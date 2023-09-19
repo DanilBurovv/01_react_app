@@ -15,14 +15,18 @@ On main page click on profile's icon and choose Edit profile (screen_1.png)
 
 ==============  documentation
 Main page => bottom menu choose API (screen_4.png)
-=> API Documentation click link developers.themoviedb.org screen_5.png)
+=> API Documentation click link developers.themoviedb.org (screen_5.png)
 => left menu choose DISCOVER (screen_6.png)
 
 https://developers.themoviedb.org/3
+
 ===============================
 
 TEST KEY 
 65e043c24785898be00b4abc12fcdaae
+
+https://api.themoviedb.org/3/discover/movie?api_key=65e043c24785898be00b4abc12fcdaae&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc
+
 
 ==============📣 2. get movies
 mkdir -p src/components/movies
