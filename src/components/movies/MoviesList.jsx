@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
-import {FaSpinner} from 'react-icons/fa'
 import Movie from './Movie'
+import Pagination from '../common/pagination'
 
 const API_URL = 
     "https://api.themoviedb.org/3/discover/movie?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
@@ -52,44 +52,11 @@ const MoviesList = () => {
 
   return (
     <>
-    <div className="text-2xl mb-4 flex">
-        <span className="mr-4">
-            Page: <span className="text-red-500 font-bold">{page}</span>
-        </span>
-        {page >= 3 && (
-          <button 
-            onClick={() => setPage(1)}
-            disabled={page <= 1}
-            className="btn-primary">
-              Page 1     
-          </button>
-        )}
-        <button 
-          onClick={() => setPage((x) => x - 1)}
-          disabled={page <= 1}
-          className="btn-primary">
-            Prev     
-        </button>
-        <button 
-          onClick={() => setPage((x) => x + 1)}
-          disabled={page >= 500}
-          className="btn-primary">
-            Next     
-        </button>
-        {page < 500 && (
-          <button 
-            onClick={() => setPage(500)}
-            disabled={page >= 499 }
-            className="btn-primary">
-              Page 500     
-          </button>
-        )}
-
-        {loading && <FaSpinner className="animate-spin h-10 w-10 ml-4" />}
-    </div>
+    <Pagination page={page} setPage={setPage} loading={loading} />
     <div className="grid grid-cols-4 gap-4">
         { movies?.results && 
-            movies.results.map((m) => <Movie key={m.id} item={m} config={config} />)}
+            movies.results.map((m) => 
+                <Movie key={m.id} item={m} config={config} />)}
     </div>
     </>
   )
