@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import {FaSpinner} from 'react-icons/fa'
 import Movie from './Movie'
 
 const API_URL = 
@@ -16,6 +17,7 @@ const MoviesList = () => {
     const [movies, setMovies] = useState({});
     const [config, setConfig] = useState({});
     const [page, setPage] = useState(1)
+    const [loading, setLoading] = useState(false)
 
     const getConfig = async () => {
         try {
@@ -29,13 +31,16 @@ const MoviesList = () => {
 
     useEffect(() => {
         const getMovies = async () => {
+            setLoading(true)
             try {
                 const movies = await fetchMovies(page);
                 setMovies(movies)
                 console.log(movies);
             } catch (err) {
                 console.log(err);
-          }
+            } finally {
+                setLoading(false)
+            }
         }
         getMovies();
     },[page])
@@ -47,7 +52,7 @@ const MoviesList = () => {
 
   return (
     <>
-    <div className="text-2xl mb-4">
+    <div className="text-2xl mb-4 flex">
         <span className="mr-4">
             Page: <span className="text-red-500 font-bold">{page}</span>
         </span>
@@ -74,11 +79,13 @@ const MoviesList = () => {
         {page < 500 && (
           <button 
             onClick={() => setPage(500)}
-            disabled={page >= 499}
+            disabled={page >= 499 }
             className="btn-primary">
               Page 500     
           </button>
         )}
+
+        {loading && <FaSpinner className="animate-spin h-10 w-10 ml-4" />}
     </div>
     <div className="grid grid-cols-4 gap-4">
         { movies?.results && 
