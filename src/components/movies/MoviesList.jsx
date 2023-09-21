@@ -5,29 +5,15 @@ import Pagination from "../common/Pagination";
 const API_URL =
   "https://api.themoviedb.org/3/discover/movie?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
 
-const CONFIG_URL =
-  "https://api.themoviedb.org/3/configuration?api_key=65e043c24785898be00b4abc12fcdaae";
-
 const fetchMovies = async (page) => {
   const res = await fetch(API_URL + `&page=${page}`);
   return await res.json();
 };
 
-const MoviesList = () => {
+const MoviesList = ({ config }) => {
   const [movies, setMovies] = useState({});
-  const [config, setConfig] = useState({});
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-
-  const getConfig = async () => {
-    try {
-      const res = await fetch(CONFIG_URL);
-      const config = await res.json();
-      setConfig(config);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   useEffect(() => {
     const getMovies = async () => {
@@ -35,7 +21,6 @@ const MoviesList = () => {
       try {
         const movies = await fetchMovies(page);
         setMovies(movies);
-        console.log(movies);
       } catch (err) {
         console.log(err);
       } finally {
@@ -44,10 +29,6 @@ const MoviesList = () => {
     };
     getMovies();
   }, [page]);
-
-  useEffect(() => {
-    getConfig();
-  }, []);
 
   return (
     <>
