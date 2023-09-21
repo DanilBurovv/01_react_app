@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import MovieList from "./MoviesList";
 import MovieDetails from "./MovieDetails";
 
-const CONFIG_URL =
-  "https://api.themoviedb.org/3/configuration?api_key=65e043c24785898be00b4abc12fcdaae";
+const KEY = process.env.REACT_APP_MOVIE_KEY;
+const CONFIG_URL = `https://api.themoviedb.org/3/configuration?api_key=${KEY}`;
 
 const MoviePage = () => {
   const [config, setConfig] = useState({});

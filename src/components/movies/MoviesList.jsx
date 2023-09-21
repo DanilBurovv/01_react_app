@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import Movie from "./Movie";
 import Pagination from "../common/Pagination";
 
-const API_URL =
-  "https://api.themoviedb.org/3/discover/movie?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
+const KEY = process.env.REACT_APP_MOVIE_KEY;
+const API_URL = `https://api.themoviedb.org/3/discover/movie?language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&api_key=${KEY}`;
 
 const fetchMovies = async (page) => {
   const res = await fetch(API_URL + `&page=${page}`);
