@@ -23,7 +23,6 @@ const MovieDetails = ({ config }) => {
       try {
         const movie = await fetchMovie(id);
         setMovie(movie);
-        console.log(movie);
       } catch (err) {
         console.log(err.message);
       } finally {
@@ -53,7 +52,7 @@ const MovieDetails = ({ config }) => {
             movie.genres.map((g) => (
               <Link
                 key={g.id}
-                to={` movies/genres/${g.id}`}
+                to={` /../../../genres/${g.id}`}
                 className="block mb-3 text-red-500 underline md:hover:no-underline cursor-pointer"
               >
                 {g.name}

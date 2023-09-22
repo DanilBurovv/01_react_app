@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import MovieList from "./MoviesList";
 import MovieDetails from "./MovieDetails";
+import GenresList from "./GenresList";
 
 const KEY = process.env.REACT_APP_MOVIE_KEY;
 const CONFIG_URL = `https://api.themoviedb.org/3/configuration?api_key=${KEY}`;
@@ -27,6 +28,7 @@ const MoviePage = () => {
       <Routes>
         <Route path="list" element={<MovieList config={config} />} />
         <Route path="detail/:id" element={<MovieDetails config={config} />} />
+        <Route path="genres/:id" element={<GenresList config={config} />} />
       </Routes>
     </>
   );
