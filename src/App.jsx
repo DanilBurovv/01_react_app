@@ -7,7 +7,7 @@ import PageNotFound from "./components/common/PageNotFound";
 
 function App() {
   return (
-    <div className="container mx-auto min-h-screen px-6 bg-slate-300">
+    <div className="container mx-auto max-w-full min-h-screen pt-6 px-20 bg-slate-300">
       <Nav />
       <Routes>
         <Route path="/" element={<HomePage />} />
