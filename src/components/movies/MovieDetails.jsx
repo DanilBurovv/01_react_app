@@ -47,17 +47,45 @@ const MovieDetails = ({ config }) => {
         )}
         <div>
           <h1 className="text-3xl mb-3">{movie.title}</h1>
-          <p className="mb-3">{movie.overview}</p>
-          {movie?.genres &&
-            movie.genres.map((g) => (
-              <Link
-                key={g.id}
-                to={` /../../../genres/${g.id}`}
-                className="block mb-3 text-red-500 underline md:hover:no-underline cursor-pointer"
-              >
-                {g.name}
-              </Link>
-            ))}
+          <p className="mb-3 max-w-2xl">{movie.overview}</p>
+          <div className="flex mb-3">
+            <p className="w-[100px] font-medium">Country: </p>
+            {movie?.production_countries &&
+              movie.production_countries.map((c, index, array) => (
+                <div key={c.id}>
+                  <p className="me-4">
+                    {c.name}
+                    {index !== array.length - 1 && <span>,</span>}
+                  </p>
+                </div>
+              ))}
+          </div>
+          <div className="flex mb-3">
+            <p className="w-[100px] font-medium">Company: </p>
+            {movie?.production_companies &&
+              movie.production_companies.map((c, index, array) => (
+                <div key={c.id}>
+                  <p className="me-4">
+                    {c.name}
+                    {index !== array.length - 1 && <span>,</span>}
+                  </p>
+                </div>
+              ))}
+          </div>
+          <div className="flex mb-3">
+            <p className="w-[100px] font-medium">Genre:</p>
+            {movie?.genres &&
+              movie.genres.map((g, index, array) => (
+                <Link
+                  key={g.id}
+                  to={` /../../../genres/${g.id}`}
+                  className="me-4 text-red-700 underline md:hover:no-underline cursor-pointer max-w-fit"
+                >
+                  {g.name}
+                  {index !== array.length - 1 && <span>,</span>}
+                </Link>
+              ))}
+          </div>
         </div>
       </div>
     </>

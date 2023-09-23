@@ -7,9 +7,9 @@
         @apply rounded-md mr-4 cursor-pointer bg-emerald-600 text-white px-4 py-2 disabled:bg-slate-200;
     }
     .nav-link {
-        @apply text-2xl text-white bg-cyan-500 px-4 py-2
+        @apply text-2xl text-white bg-cyan-700 px-4 py-2 rounded-md mr-4
     }
     .nav-link.active {
-        @apply bg-emerald-400
+        @apply bg-emerald-500
     }
 }
